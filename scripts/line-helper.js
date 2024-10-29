@@ -5,8 +5,8 @@ const path = require("path");
 const readline = require("readline");
 
 // update as your project path. note: use \\ or /
-const root = `D:\\Develop\\WebApplications\\nodejs\\nodejs-webpack`;
-const ExcludedDirs = [".git\\", "node_modules\\"];
+const root = `C:\\Users\\Snow-Angel\\Desktop\\codes\\nodejs-hello`;
+const ExcludedFolders = [".git\\", "node_modules\\"];
 
 entrypoint(root);
 
@@ -15,7 +15,7 @@ async function entrypoint(dir) {
   console.log("project-lines ...");
 
   const filepaths = readFilepathSync(dir);
-  const filepathsFiltered = filepaths.filter(filepath => !ExcludedDirs.includes(filepath));
+  const filepathsFiltered = filepaths.filter(filepath => !isExcluded(filepath));
   // console.log({filepathsFiltered});
 
   const filelinePromiseList = filepathsFiltered.map(filepath => readFileLine(filepath).then(fileline => ({ filepath, fileline })));
@@ -32,18 +32,27 @@ async function entrypoint(dir) {
 }
 
 //#region define function
+function isExcluded(filepath) {
+  for (const folder of ExcludedFolders) {
+    if (filepath.includes(folder)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /**
  * Get filepaths with recursive
  * @param {string} dir 
- * @param {object} options? default: { encoding: "utf-8", withFileTypes; true, recursive: false }
+ * @param {object} options? default: { encoding: "utf8", withFileTypes: false, recursive: false }
  * @returns {Generator}
  */
 function* walkSync(dir, options) {
-  options = { withFileTypes: true, ...options };
-  const files = fs.readdirSync(dir, options);
+  const newOptions = { withFileTypes: true, ...options };
+  const files = fs.readdirSync(dir, newOptions);
   for (const file of files) {
     if (file.isDirectory()) {
-      yield* walkSync(path.join(dir, file.name), options);
+      yield* walkSync(path.join(dir, file.name), newOptions);
     } else {
       yield path.join(dir, file.name);
     }
