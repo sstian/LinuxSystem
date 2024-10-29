@@ -1,4 +1,6 @@
-// Count file lines under project folder
+// Function: Count file lines under project folder
+// Time: 2024-10-29 23:55
+// Usage: update root global variable. then run: node line-helper.js
 
 const fs = require("fs");
 const path = require("path");
