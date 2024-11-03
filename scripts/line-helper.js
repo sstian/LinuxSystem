@@ -9,12 +9,12 @@ const readline = require("readline");
 // update as your project path. note: use \\ or /
 const root = `C:\\Users\\Snow-Angel\\Desktop\\codes\\nodejs-hello`;
 const ExcludedFolders = [".git\\", "node_modules\\"];
-
 entrypoint(root);
 
 
 async function entrypoint(dir) {
   console.log("project-lines ...");
+  const start = Date.now();
 
   const filepaths = readFilepathSync(dir);
   const filepathsFiltered = filepaths.filter(filepath => !isExcluded(filepath));
@@ -31,6 +31,9 @@ async function entrypoint(dir) {
     .reduce((previous, current) => previous + current, 0);
 
   console.log(`project: ${dir}, total lines: ${totalLines}`);
+
+  const end = Date.now();
+  console.log(`elapsed ${(end - start) / 1000} s`)
 }
 
 //#region define function
