@@ -1,0 +1,4 @@
+logLevel: info
+
+port: 3300
+cacheFolder: ""

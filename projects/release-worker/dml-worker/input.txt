@@ -1,0 +1,10 @@
+
+region_spec = APAC, EMEA, NAM
+git_branch = feature/C123456A-1234-dml-test
+release_date = 20250606
+file_suffix = 
+
+# only configure once below
+myid = 1234567
+stream = TEST
+repo_path = C:\repos\test_dml

@@ -1,0 +1,33 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node ./server.js",
+    "stop": "taskkill -F -IM node.exe",
+    "local": "powershell ./start.ps1",
+    "dev": "npm install && npm start",
+    "mon": "nodemon ./server.js -e js,yml,yaml",
+    "test": "mocah --recursive --exit",
+    "cover": "nyc --reporter=text npm test"
+  },
+  "dependencies": {
+    "@hapi/boom": "",
+    "axios": "",
+    "convict": "",
+    "convict-format-with-validator": "",
+    "cors": "",
+    "csv": "",
+    "csvtojson": "",
+    "express": "",
+    "express-request-id": "",
+    "js-yaml": "",
+    "rotating-file-stream": "",
+    "swagger-stats": "",
+    "swagger-ui-express": "",
+    "winston": ""
+  },
+  "devDependencies": {
+    "mocha": "",
+    "nyc": ""
+  }
+}
